@@ -59122,6 +59122,9 @@ window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2
 Vue.component('categoria', __webpack_require__(/*! ./components/Categoria.vue */ "./resources/js/components/Categoria.vue").default);
 Vue.component('articulo', __webpack_require__(/*! ./components/Articulo.vue */ "./resources/js/components/Articulo.vue").default);
 Vue.component('cliente', __webpack_require__(/*! ./components/Cliente.vue */ "./resources/js/components/Cliente.vue").default);
+Vue.component('cliente', __webpack_require__(/*! ./components/Proveedor.vue */ "./resources/js/components/Proveedor.vue").default);
+Vue.component('rol', __webpack_require__(/*! ./components/Rol.vue */ "./resources/js/components/Rol.vue").default);
+Vue.component('user', __webpack_require__(/*! ./components/User.vue */ "./resources/js/components/User.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59452,6 +59455,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cliente_vue_vue_type_template_id_652dbb42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Proveedor.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Proveedor.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\sistema\\resources\\js\\components\\Proveedor.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/components/Rol.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Rol.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\sistema\\resources\\js\\components\\Rol.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/components/User.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/User.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\sistema\\resources\\js\\components\\User.vue'");
 
 /***/ }),
 
