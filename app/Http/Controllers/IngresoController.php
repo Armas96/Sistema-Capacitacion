@@ -46,6 +46,31 @@ class IngresoController extends Controller
             'ingresos' => $ingresos
         ];
     }
+    public function obtenerCabecera(Request $request){
+        if (!$request->ajax()) return redirect('/');
+ 
+        $id = $request->id;
+        $ingreso = Ingreso::join('personas','ingresos.idproveedor','=','personas.id')
+        ->join('users','ingresos.idusuario','=','users.id')
+        ->select('ingresos.id','ingresos.tipo_comprobante','ingresos.serie_comprobante',
+        'ingresos.num_comprobante','ingresos.fecha_hora','ingresos.impuesto','ingresos.total',
+        'ingresos.estado','personas.nombre','users.usuario')
+        ->where('ingresos.id','=',$id)
+        ->orderBy('ingresos.id', 'desc')->take(1)->get();
+         
+        return ['ingreso' => $ingreso];
+    }
+    public function obtenerDetalles(Request $request){
+        if (!$request->ajax()) return redirect('/');
+ 
+        $id = $request->id;
+        $detalles = DetalleIngreso::join('articulos','detalle_ingresos.idarticulo','=','articulos.id')
+        ->select('detalle_ingresos.cantidad','detalle_ingresos.precio','articulos.nombre as articulo')
+        ->where('detalle_ingresos.idingreso','=',$id)
+        ->orderBy('detalle_ingresos.id', 'desc')->get();
+         
+        return ['detalles' => $detalles];
+    }
  
     public function store(Request $request)
     {
@@ -54,7 +79,7 @@ class IngresoController extends Controller
         try{
             DB::beginTransaction();
  
-            $mytime= Carbon::now('America/Mexico_City');
+            $mytime= Carbon::now('America/Lima');
  
             $ingreso = new Ingreso();
             $ingreso->idproveedor = $request->idproveedor;
@@ -69,8 +94,8 @@ class IngresoController extends Controller
             $ingreso->save();
  
             $detalles = $request->data;//Array de detalles
-            
             //Recorro todos los elementos
+ 
             foreach($detalles as $ep=>$det)
             {
                 $detalle = new DetalleIngreso();
