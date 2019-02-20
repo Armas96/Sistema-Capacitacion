@@ -12,6 +12,9 @@
                         <button type="button" @click="abrirModal('articulo','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
+                        <button type="button" @click="cargarPdf()" class="btn btn-info">
+                            <i class="icon-doc"></i>&nbsp;Reporte
+                        </button>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
@@ -403,6 +406,9 @@
                 if (this.errorMostrarMsjArticulo.length) this.errorArticulo = 1;
 
                 return this.errorArticulo;
+            },
+            cargarPdf(){
+                window.open('http://127.0.0.1:8000/articulo/listarPdf','_blank');
             },
             cerrarModal(){
                 this.modal=0;

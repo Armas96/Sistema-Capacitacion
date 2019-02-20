@@ -625,7 +625,7 @@
             agregarDetalleModal(data =[]){
                 let me=this;
                 if(me.encuentra(data['id'])){
-                        swal({
+                        Swal.fire({
                             type: 'error',
                             title: 'Error...',
                             text: 'Ese artículo ya se encuentra agregado!',
@@ -778,43 +778,45 @@
                 this.tituloModal = 'Seleccione uno o varios artículos';
             },
             desactivarVenta(id){
-               swal({
-                title: 'Esta seguro de anular esta venta?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar!',
-                cancelButtonText: 'Cancelar',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-                reverseButtons: true
-                }).then((result) => {
-                if (result.value) {
-                    let me = this;
+                const swalWithBootstrapButtons = Swal.mixin({
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false,
+                })
 
-                    axios.put('/venta/desactivar',{
-                        'id': id
-                    }).then(function (response) {
-                        me.listarVenta(1,'','num_comprobante');
-                        swal(
-                        'Anulado!',
-                        'La venta ha sido anulada con éxito.',
-                        'success'
-                        )
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-                    
-                    
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    
-                }
-                }) 
+                swalWithBootstrapButtons.fire({
+                    title: 'Estas seguro?',
+                    text: "Ya no te puedes hacer pa' atras",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Aceptar',
+                    cancelButtonText: 'Cancelar',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.value) {
+                        let me = this;
+                        axios.put('/venta/desactivar',{
+                            'id':id
+                        }).then(function (response) {
+                            me.listarVenta(1,'','nombre');
+                            swalWithBootstrapButtons.fire(
+                            'Desactivado',
+                            'Si se desactivo',
+                            'success'
+                            )
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        
+                    } else if (
+                        // Read more about handling dismissals
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        
+                    }
+                })
             },
         },
         mounted() {
